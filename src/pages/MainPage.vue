@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import ProductCard from "../components/ProductCard.vue";
-import { API_URL, API_KEY } from "../utils/extra.js";
+import ProductCard from "@/components/ProductCard.vue";
+import { API_URL, API_KEY } from "@/utils/extra.js";
 
 const products = ref([]);
 
@@ -97,7 +97,7 @@ function nextPage() {
   </div>
 
   <div class="container">
-    <div class="pagingation">
+    <div class="pagination">
       <button class="btn" :disabled="currentPage === 1" @click="previousPage">
         Назад
       </button>
