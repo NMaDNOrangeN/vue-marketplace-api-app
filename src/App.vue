@@ -9,7 +9,7 @@ function to_home() {
 
 <template>
   <header>
-    <nav>
+    <nav class="container nav">
       <RouterLink to="/">Товары</RouterLink>
       <RouterLink to="/cart">Корзина</RouterLink>
     </nav>
@@ -17,12 +17,10 @@ function to_home() {
 
   <RouterView />
   <footer>
-    <nav>
-      <RouterLink to="/">Товары</RouterLink>
-      <RouterLink to="/cart">Корзина</RouterLink>
-    </nav>
-    <button class="button-to-home" @click="to_home">↑В начало↑</button>
-    <p>По вопросам: caesgou@mail.ru</p>
+    <div class="container footer-content">
+      <button class="btn" @click="to_home">↑ В начало ↑</button>
+      <p>По вопросам: caesgou@mail.ru</p>
+    </div>
   </footer>
 </template>
 

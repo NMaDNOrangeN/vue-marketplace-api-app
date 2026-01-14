@@ -44,17 +44,15 @@ function clear() {
         <img :src="item.img" :alt="item.name" width="100px" />
         {{ item.name }} – {{ item.price }} руб. * {{ item.quantity }}
 
-        <button class="shopping-cart__remove" @click="remove(item.id)">
-          -
-        </button>
-        <button class="shopping-cart__add" @click="add(item)">+</button>
+        <button class="btn" @click="remove(item.id)">-</button>
+        <button class="btn" @click="add(item)">+</button>
       </li>
     </ul>
 
     <p class="shopping-cart__amount" v-if="cart.length > 0">
       Итого: {{ total }} руб.
     </p>
-    <button class="shopping-cart__clear" v-if="cart.length > 0" @click="clear">
+    <button class="btn" v-if="cart.length > 0" @click="clear">
       Очистить корзину
     </button>
   </div>

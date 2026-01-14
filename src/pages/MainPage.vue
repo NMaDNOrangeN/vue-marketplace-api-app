@@ -1,14 +1,13 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import ProductCard from "../components/ProductCard.vue";
-
-const API_URL = "https://nti.urfu.ru/api_exam";
+import { API_URL, API_KEY } from "../utils/extra.js";
 
 const products = ref([]);
 
 async function getProducts(page = 1) {
   const response = await fetch(
-    `${API_URL}/product?api_key=8R2S3r3aR5KIb2zR&page=${page}&category_id=${selectedCategory.value}`
+    `${API_URL}/product?api_key=${API_KEY}&page=${page}&category_id=${selectedCategory.value}`
   );
   return response.json();
 }
@@ -17,7 +16,7 @@ const categories = ref([]);
 const selectedCategory = ref(0);
 
 async function getCategories() {
-  const response = await fetch(`${API_URL}/category?api_key=8R2S3r3aR5KIb2zR`);
+  const response = await fetch(`${API_URL}/category?api_key=${API_KEY}`);
   return response.json();
 }
 
@@ -65,50 +64,52 @@ function nextPage() {
 </script>
 
 <template>
-  <div class="categories">
-    <select
-      class="categories__select"
-      v-model="selectedCategory"
-      @change="onCategoryChange"
-    >
-      <option class="categories__select-option" :value="0">
-        Все категории
-      </option>
-      <option
-        class="categories__select-option"
-        v-for="category in categories"
-        :key="category.id"
-        :value="category.id"
+  <div class="container">
+    <div class="categories">
+      <select
+        class="categories__select"
+        v-model="selectedCategory"
+        @change="onCategoryChange"
       >
-        {{ category.name }}
-      </option>
-    </select>
+        <option class="categories__select-option" :value="0">
+          Все категории
+        </option>
+        <option
+          class="categories__select-option"
+          v-for="category in categories"
+          :key="category.id"
+          :value="category.id"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
   </div>
 
-  <div class="products">
-    <ProductCard
-      v-for="product in products"
-      :key="product.id"
-      :product="product"
-    ></ProductCard>
+  <div class="container">
+    <div class="products">
+      <ProductCard
+        v-for="product in products"
+        :key="product.id"
+        :product="product"
+      ></ProductCard>
+    </div>
   </div>
 
-  <div class="pagingation">
-    <button
-      class="pagination__previous"
-      :disabled="currentPage === 1"
-      @click="previousPage"
-    >
-      Назад
-    </button>
-    <span class="pagination__pages">{{ currentPage }}/{{ totalPages }}</span>
-    <button
-      class="pagination__next"
-      :disabled="currentPage === totalPages"
-      @click="nextPage"
-    >
-      Вперёд
-    </button>
+  <div class="container">
+    <div class="pagingation">
+      <button class="btn" :disabled="currentPage === 1" @click="previousPage">
+        Назад
+      </button>
+      <span class="pagination__pages">{{ currentPage }}/{{ totalPages }}</span>
+      <button
+        class="btn"
+        :disabled="currentPage === totalPages"
+        @click="nextPage"
+      >
+        Вперёд
+      </button>
+    </div>
   </div>
 </template>
 

@@ -21,7 +21,7 @@ function addProductToCart() {
       <p>Оценка: {{ product.rating }}</p>
     </RouterLink>
 
-    <button class="product-card___add-to-cart" @click.stop="addProductToCart">
+    <button class="btn" @click.stop="addProductToCart">
       Добавить в корзину
     </button>
   </div>
