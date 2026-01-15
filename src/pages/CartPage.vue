@@ -2,6 +2,7 @@
 import { ref, onMounted, computed } from "vue";
 import { getCart, addToCart, removeFromCart, clearCart } from "@/utils/cart";
 import { RouterLink } from "vue-router";
+import noImage from "@/assets/no_image.jpg";
 
 const cart = ref([]);
 
@@ -45,8 +46,12 @@ function clear() {
     <div class="shopping-cart__list" v-else>
       <div class="shopping-cart__goods" v-for="item in cart" :key="item.id">
         <RouterLink class="shopping-cart__link" :to="`/product/${item.id}`">
-          <img class="shopping-cart__image" :src="item.img" :alt="item.name"
-        /></RouterLink>
+          <img
+            class="shopping-cart__image"
+            :src="item.img || noImage"
+            :alt="item.name"
+          />
+        </RouterLink>
 
         <div class="shopping-cart__info">
           {{ item.name }} – {{ item.price }} руб. * {{ item.quantity }}

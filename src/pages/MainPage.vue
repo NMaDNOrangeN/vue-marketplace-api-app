@@ -92,6 +92,11 @@ function nextPage() {
         v-for="product in products"
         :key="product.id"
         :product="product"
+        :category="
+          selectedCategory
+            ? categories[selectedCategory - 1].name
+            : 'Все категории'
+        "
       ></ProductCard>
     </div>
   </div>

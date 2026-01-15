@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { API_URL, API_KEY } from "@/utils/extra.js";
 import { addToCart } from "@/utils/cart.js";
+import noImage from "@/assets/no_image.jpg";
 
 const route = useRoute();
 const product = ref(null);
@@ -24,7 +25,7 @@ function addProductToCart() {
   <div class="container" v-if="product">
     <div class="product-page">
       <div class="product-page__image">
-        <img :src="product.img" :alt="product.name" />
+        <img :src="product.img || noImage" :alt="product.name" />
       </div>
 
       <div class="product-page__info">
